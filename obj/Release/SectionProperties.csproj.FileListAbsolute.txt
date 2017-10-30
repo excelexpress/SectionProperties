@@ -1,0 +1,30 @@
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.1\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.1\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.1\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.1\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.1\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.2\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.2\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.2\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.2\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+L:\Stress\Methods\Excel Express\StressEx\Complex Shape\SecProps\SectionProperties - v0.2\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\bande\Dropbox\StressEx\In Work\SectionProperties - v0.2\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+C:\Users\bande\Dropbox\StressEx\In Work\SectionProperties - v0.2\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\bande\Dropbox\StressEx\In Work\SectionProperties - v0.2\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
+C:\Users\bande\Dropbox\StressEx\In Work\SectionProperties - v0.2\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+C:\Users\bande\Dropbox\StressEx\In Work\SectionProperties - v0.2\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\Brian\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+C:\Users\Brian\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\Brian\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
+C:\Users\Brian\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+C:\Users\Brian\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\bin\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
+C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
+C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
