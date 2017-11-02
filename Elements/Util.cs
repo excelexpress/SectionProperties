@@ -47,6 +47,11 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 Iyy = Iyy + relief;
             }
 
+            if(Ixy == 0)
+            {
+                return 0;
+            }
+
             double rhs = 2 * Ixy / (Iyy - Ixx);
             double thetaP = Math.Atan(rhs) / 2;
 
