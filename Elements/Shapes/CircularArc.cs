@@ -105,12 +105,14 @@ namespace ExcelExpress.ComplexShape.SectionProperties
 
                 double E = Material.E;
 
-                sp.EA = E * ((1 - Math.PI / 4) * r * r);
-                sp.EIxx = E * ((1 - 5 * Math.PI / 16) - (1 - Math.PI / 4) * Math.Pow((10 - 3 * Math.PI), 2) / (9 * Math.Pow((4 - Math.PI), 2))) * Math.Pow(r, 4); ;
-                sp.EIyy = sp.EIxx;
-                sp.EIxy = E * (-0.00443868 * Math.Pow(r, 4));
-                sp.Xcg = ((10 - 3 * Math.PI) * r) / (3 * (4 - Math.PI));
-                sp.Ycg = ((10 - 3 * Math.PI) * r) / (3 * (4 - Math.PI));
+                double I_Y1 = alpha / 4 * (Math.Pow(_R, 4) - Math.Pow(r, 4)) * (1 + Math.Sin(alpha) * Math.Cos(alpha) / alpha);
+
+                sp.EA = E * (_R*_R - r*r) * alpha;
+                sp.EIxx = E * alpha / 4 * (Math.Pow(_R, 4) - Math.Pow(r, 4)) * (1 - Math.Sin(alpha) * Math.Cos(alpha) / alpha);
+                sp.EIyy = E * (I_Y1 - 1 / (alpha*(_R*_R - r*r))*Math.Pow((2*Math.Sin(alpha)*(Math.Pow(_R,3) - Math.Pow(r,3))/3),2));
+                sp.EIxy = 0;
+                sp.Xcg = (2 * (Math.Pow(_R, 3) - Math.Pow(r, 3)) * Math.Sin(alpha)) / (3 * alpha * (_R * _R - r * r));
+                sp.Ycg = 0;
 
                 return sp;
 
@@ -124,6 +126,9 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 Coordinate point1_sh = new Coordinate();
 
                 double cg_pnt = ((10 - 3 * Math.PI) * r) / (3 * (4 - Math.PI));
+                double cos = Math.Cos(alpha);
+                double sin = Math.Sin(alpha);
+                double Ravg = (_R + r) / 2;
 
                 switch (PointID)
                 {
@@ -131,19 +136,32 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                         point1_sh = ConvertXYtoCoordinate(0, 0);
                         break;
                     case "b":
-                        point1_sh = ConvertXYtoCoordinate(0, r / 2);
+                        point1_sh = ConvertXYtoCoordinate(r*cos, r*sin);
                         break;
                     case "c":
-                        point1_sh = ConvertXYtoCoordinate(0, r);
+                        point1_sh = ConvertXYtoCoordinate(Ravg * cos, Ravg * sin);
                         break;
                     case "d":
-                        point1_sh = ConvertXYtoCoordinate(r, 0);
+                        point1_sh = ConvertXYtoCoordinate(_R * cos, _R * sin);
                         break;
                     case "e":
-                        point1_sh = ConvertXYtoCoordinate(r / 2, 0);
+                        point1_sh = ConvertXYtoCoordinate(_R, 0);
+                        break;
+                    case "f":
+                        point1_sh = ConvertXYtoCoordinate(_R * cos, -_R * sin);
+                        break;
+                    case "g":
+                        point1_sh = ConvertXYtoCoordinate(Ravg * cos, -Ravg * sin);
+                        break;
+                    case "h":
+                        point1_sh = ConvertXYtoCoordinate(r * cos, -r * sin);
+                        break;
+                    case "i":
+                        point1_sh = ConvertXYtoCoordinate(r,0);
                         break;
                     case "cg":
-                        point1_sh = ConvertXYtoCoordinate(cg_pnt, cg_pnt);
+                        double cgx = (2 * (Math.Pow(_R,3)-Math.Pow(r,3)) * sin ) / (3 * alpha * (_R * _R - r * r));
+                        point1_sh = ConvertXYtoCoordinate(cgx, 0);
                         break;
                 }
 
