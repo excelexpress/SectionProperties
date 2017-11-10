@@ -11,7 +11,7 @@ namespace ExcelExpress.ComplexShape.SectionProperties
     public partial class SectionElements
     {
 
-        public class CircularShape : Shape
+        public class CircularArc : Shape
         {
             public override IsoMaterial Material { get; set; }
             public override double theta { get; set; }
@@ -24,10 +24,41 @@ namespace ExcelExpress.ComplexShape.SectionProperties
 
             public static List<string> _pointlist = new List<string>() { "a", "b", "c", "d", "e", "cg" };
             public override List<string> ShapePointList { get { return _pointlist; } }
-
+                        
+            private double _r = 0;
             [Dimension("Radius")]
-            public double r { get; set; }
+            public double r
+            {
+                get
+                {
+                    return _r;
+                }
+                set
+                {
+                    _r = value;
+                    _R = value + _t;
+                }
+            }
+                        
+            private double _t = 0;
+            [Dimension("Thickness")]
+            public double t
+            {
+                get
+                {
+                    return _t;
+                }
+                set
+                {
+                    _t = value;
+                    _R = value + _r;
+                }
+            }
 
+            [Dimension("Arc Angle")]
+            public double alpha { get; set; }
+
+            private double _R; //outer radius
 
             public override void Draw(ref Bitmap bitmap, PlotProperties plotprops)
             {
