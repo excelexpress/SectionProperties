@@ -22,7 +22,7 @@ namespace ExcelExpress.ComplexShape.SectionProperties
             public override double xp { get; set; }
             public override double yp { get; set; }
 
-            public static List<string> _pointlist = new List<string>() { "a", "b", "c", "d", "e", "cg" };
+            public static List<string> _pointlist = new List<string>() { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "cg" };
             public override List<string> ShapePointList { get { return _pointlist; } }
                         
             private double _r = 0;
@@ -55,8 +55,21 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 }
             }
 
+            private double _phi = 0;
+            private double alpha;
             [Dimension("Arc Angle")]
-            public double alpha { get; set; }
+            public double phi
+            {
+                get
+                {
+                    return _phi;
+                }
+                set
+                {
+                    _phi = value;
+                    alpha = value / 2;
+                }
+            }
 
             private double _R; //outer radius
 
@@ -65,7 +78,14 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 double theta_degree = theta * 180 / Math.PI;
                 double SF = ImageUtil.CalculateScaleFactor(bitmap, plotprops);
 
-                int _r = (int)(r * SF);
+                int int_r = (int)(r * SF);
+                int int_R = (int)(_R * SF);
+                int int_t = (int)(t * SF);
+                int deg_alpha = (int)(alpha * 180 / Math.PI);
+
+                int cos = (int)(Math.Cos(alpha));
+                int sin = (int)(Math.Sin(alpha));
+
 
                 int wdth = bitmap.Width;
                 int hght = bitmap.Height;
@@ -73,9 +93,10 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 Graphics g = Graphics.FromImage(bitmap);
 
                 GraphicsPath path = new GraphicsPath();
-                path.AddLine(0, 0, 0, _r);
-                path.AddArc(new System.Drawing.Rectangle(0, 0, 2 * _r, 2 * _r), 180, 90);
-                path.AddLine(_r, 0, 0, 0);
+                path.AddLine(int_r * cos, int_r * sin, int_R * cos, int_R * sin);
+                path.AddArc(new System.Drawing.Rectangle(-int_R, -int_R, 2 * int_R, 2 * int_R), deg_alpha, -2 * deg_alpha);
+                path.AddLine(int_R * cos, -int_R * sin, int_r * cos, -int_r * sin);
+                path.AddArc(new System.Drawing.Rectangle(-int_r, -int_r, 2 * int_r, 2 * int_r), -deg_alpha, 2 * deg_alpha);
                 path.CloseFigure();
 
                 PointF pnt = CreateImagePoint(SF);
@@ -159,6 +180,13 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                     case "i":
                         point1_sh = ConvertXYtoCoordinate(r,0);
                         break;
+                    case "j":
+                        if(cos == 0)
+                        {
+                            cos = 1E-256;
+                        }
+                        point1_sh = ConvertXYtoCoordinate(_R / cos, 0);
+                        break;
                     case "cg":
                         double cgx = (2 * (Math.Pow(_R,3)-Math.Pow(r,3)) * sin ) / (3 * alpha * (_R * _R - r * r));
                         point1_sh = ConvertXYtoCoordinate(cgx, 0);
@@ -166,6 +194,45 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 }
 
                 return point1_sh;
+
+            }
+
+            public override EnvelopeCoords GetEnvelopeCoord()
+            {
+                //Override bc if phi > 180 then the tops of the arc aren't accounted for 
+                Coordinate gpc = new Coordinate();
+                double xmax = -1E+256;
+                double xmin = 1E+256;
+                double ymax = -1E+256;
+                double ymin = 1E+256;
+
+                foreach (string mypoint in ShapePointList)
+                {
+                    if (mypoint != "a" || mypoint != "j") // points a and j are not actually on the shape
+                    {
+                        gpc = GlobalPointCoordinate(mypoint);
+                        xmax = (xmax > gpc.x) ? xmax : gpc.x;
+                        xmin = (xmin < gpc.x) ? xmin : gpc.x;
+                        ymax = (ymax > gpc.y) ? ymax : gpc.y;
+                        ymin = (ymin < gpc.y) ? ymin : gpc.y;
+                    }
+                }
+
+                Coordinate gpc_a = GlobalPointCoordinate("a");
+                if (phi >= Math.PI)
+                {                    
+                    xmax = gpc_a.x + _R;
+                    ymax = gpc_a.y + _R;
+                    xmin = gpc_a.x - _R;
+                    ymin = gpc_a.y - _R;
+                }
+
+                EnvelopeCoords Ecoords = new EnvelopeCoords();
+
+                Ecoords.Max = new Coordinate { x = xmax, y = ymax };
+                Ecoords.Min = new Coordinate { x = xmin, y = ymin };
+
+                return Ecoords;
 
             }
 
