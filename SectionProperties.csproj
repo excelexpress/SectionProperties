@@ -47,6 +47,7 @@
     <Compile Include="Elements\ImageUtil.cs" />
     <Compile Include="Elements\IShape.cs" />
     <Compile Include="Elements\Shapes\MachinedAngle.cs" />
+    <Compile Include="Elements\Shapes\MachinedChannel.cs" />
     <Compile Include="Elements\Shapes\Rectangle.cs" />
     <Compile Include="Elements\Shape.cs" />
     <Compile Include="Elements\Transformation.cs" />

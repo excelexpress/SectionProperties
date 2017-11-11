@@ -36,6 +36,12 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 
                 int _r = (int)(r * SF);
 
+                if (_r <= 2)
+                {
+                    //throws error if shape doesn't take up enough pixels
+                    return;
+                }
+
                 int wdth = bitmap.Width;
                 int hght = bitmap.Height;
 

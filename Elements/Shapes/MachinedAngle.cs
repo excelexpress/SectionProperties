@@ -47,6 +47,8 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 int _t2 = (int)(t2 * SF);
                 int _r = (int)(r * SF);
 
+                if(_r < 1) { _r = 1; } //_r must be at least one pixel
+
                 int wdth = bitmap.Width;
                 int hght = bitmap.Height;
 
