@@ -21,17 +21,15 @@ namespace ExcelExpress.ComplexShape.SectionProperties
             public override double xp { get; set; }
             public override double yp { get; set; }
 
-            public static List<string> _pointlist = new List<string>() { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "cg" };
+            public static List<string> _pointlist = new List<string>() { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "cg" };
             public override List<string> ShapePointList { get { return _pointlist; } }
 
             [Dimension("Width")]
             public double b1    { get; set; }
-            [Dimension("Horizontal Leg Thickness")]
-            public double t1    { get; set; }
             [Dimension("Height")]
             public double b2    { get; set; }
-            [Dimension("Vertical Leg Thickness")]
-            public double t2    { get; set; }
+            [Dimension("Thickness Thickness")]
+            public double t    { get; set; }
             [Dimension("Inner Bend Radius")]
             public double r{ get; set; }
 
@@ -42,12 +40,13 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 double SF = ImageUtil.CalculateScaleFactor(bitmap, plotprops);
 
                 int _b1 = (int)(b1 * SF);
-                int _t1 = (int)(t1 * SF);
                 int _b2 = (int)(b2 * SF);
-                int _t2 = (int)(t2 * SF);
+                int _t = (int)(t * SF);
                 int _r = (int)(r * SF);
+                int _R = (int)((r + t) * SF);
 
                 if(_r < 1) { _r = 1; } //_r must be at least one pixel
+                if(_R < 1) { _R = 1; } //_R must also be at least one pixel (not an issue as long as t isn't super small)
 
                 int wdth = bitmap.Width;
                 int hght = bitmap.Height;
@@ -55,13 +54,14 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 Graphics g = Graphics.FromImage(bitmap);
 
                 GraphicsPath path = new GraphicsPath();
-                path.AddLine(0, 0, 0, _b2);
-                path.AddLine(0, _b2, _t2, _b2);
-                path.AddLine(_t2, _b2, _t2, _t1 + _r);
-                path.AddArc(new System.Drawing.Rectangle(_t2, _t1, 2 * _r, 2 * _r), 180, 90);
-                path.AddLine(_t2 + _r, _t1, _b1, _t1);
-                path.AddLine(_b1, _t1, _b1, 0);
-                path.AddLine(_b1, 0, 0, 0);
+                path.AddLine(0, _R, 0, _b2);
+                path.AddLine(0, _b2, _t, _b2);
+                path.AddLine(_t, _b2, _t, _t + _r);
+                path.AddArc(new System.Drawing.Rectangle(_t, _t, 2 * _r, 2 * _r), 180, 90);
+                path.AddLine(_t + _r, _t, _b1, _t);
+                path.AddLine(_b1, _t, _b1, 0);
+                path.AddLine(_b1, 0, _R, 0);
+                path.AddArc(new System.Drawing.Rectangle(0, 0, 2 * _R, 2 * _R), 270, -90);
                 path.CloseFigure();
 
                 PointF pnt = CreateImagePoint(SF);
@@ -87,12 +87,12 @@ namespace ExcelExpress.ComplexShape.SectionProperties
 
             protected override SecProp ShapeSecProp()
             {
-                CircularFillet flt = new CircularFillet { Material = Material, r = r, point = "a", xp = t2, yp = t1, theta = 0 };
-                Rectangle rec1 = new Rectangle { Material = Material, b = b1 - t2, t = t1, point = "a", xp = t2, yp = 0, theta = 0 };
-                Rectangle rec2 = new Rectangle { Material = Material, b = b2, t = t2, point = "c", xp = 0, yp = 0, theta = 90 * Math.PI / 180 };
+                CircularArc bend = new CircularArc { Material = Material, r = r, phi = 90 * Math.PI/180, point = "j", xp = 0, yp = 0, theta = -(45 + 90) * Math.PI / 180 };
+                Rectangle rec1 = new Rectangle { Material = Material, b = b1 - r - t, t = t, point = "a", xp = t + r, yp = 0, theta = 0 };
+                Rectangle rec2 = new Rectangle { Material = Material, b = b2 - r - t, t = t, point = "c", xp = 0, yp = r + t, theta = 90 * Math.PI / 180 };
 
                 Section MA = new Section();
-                MA.AddShape(flt);
+                MA.AddShape(bend);
                 MA.AddShape(rec1);
                 MA.AddShape(rec2);
 
@@ -117,34 +117,46 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                         point1_sh = ConvertXYtoCoordinate(0, 0);
                         break;
                     case "b":
-                        point1_sh = ConvertXYtoCoordinate(0, b2 / 2);
+                        point1_sh = ConvertXYtoCoordinate(0, r + t);
                         break;
                     case "c":
-                        point1_sh = ConvertXYtoCoordinate(0, b2);
+                        point1_sh = ConvertXYtoCoordinate(0, ((r+t)+(b2))/2);
                         break;
                     case "d":
-                        point1_sh = ConvertXYtoCoordinate(t2, b2);
+                        point1_sh = ConvertXYtoCoordinate(0, b2);
                         break;
                     case "e":
-                        point1_sh = ConvertXYtoCoordinate(t2, (b2 + t1 + r) /2); //average of d and f
+                        point1_sh = ConvertXYtoCoordinate(t/2, b2); 
                         break;
                     case "f":
-                        point1_sh = ConvertXYtoCoordinate(t2, t1 + r);
+                        point1_sh = ConvertXYtoCoordinate(t, b2);
                         break;
                     case "g":
-                        point1_sh = ConvertXYtoCoordinate(t2 + r, t1);
+                        point1_sh = ConvertXYtoCoordinate(t, ((r + t) + (b2)) / 2);
                         break;
                     case "h":
-                        point1_sh = ConvertXYtoCoordinate((t2 + r + b1)/2, t1); //average of g and i
+                        point1_sh = ConvertXYtoCoordinate(t, t + r); 
                         break;
                     case "i":
-                        point1_sh = ConvertXYtoCoordinate(b1, t1);
+                        point1_sh = ConvertXYtoCoordinate(t + r, t);
                         break;
                     case "j":
-                        point1_sh = ConvertXYtoCoordinate(b1, 0);
+                        point1_sh = ConvertXYtoCoordinate(((t+r)+(b1))/2, t);
                         break;
                     case "k":
-                        point1_sh = ConvertXYtoCoordinate(b1 / 2, 0);
+                        point1_sh = ConvertXYtoCoordinate(b1, t);
+                        break;
+                    case "l":
+                        point1_sh = ConvertXYtoCoordinate(b1, t/2);
+                        break;
+                    case "m":
+                        point1_sh = ConvertXYtoCoordinate(b1, 0);
+                        break;
+                    case "n":
+                        point1_sh = ConvertXYtoCoordinate(((b1) + (t+r))/2, 0);
+                        break;
+                    case "o":
+                        point1_sh = ConvertXYtoCoordinate(t+r, 0);
                         break;
                     case "cg":
                         point1_sh = ConvertXYtoCoordinate(x_cg, y_cg);
