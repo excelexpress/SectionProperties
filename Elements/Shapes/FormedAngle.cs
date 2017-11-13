@@ -28,10 +28,10 @@ namespace ExcelExpress.ComplexShape.SectionProperties
             public double b1    { get; set; }
             [Dimension("Height")]
             public double b2    { get; set; }
-            [Dimension("Thickness Thickness")]
-            public double t    { get; set; }
+            [Dimension("Thickness")]
+            public double t     { get; set; }
             [Dimension("Inner Bend Radius")]
-            public double r{ get; set; }
+            public double r     { get; set; }
 
             
             public override void Draw(ref Bitmap bitmap, PlotProperties plotprops)
@@ -43,7 +43,7 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 int _b2 = (int)(b2 * SF);
                 int _t = (int)(t * SF);
                 int _r = (int)(r * SF);
-                int _R = (int)((r + t) * SF);
+                int _R = (_r + _t);
 
                 if(_r < 1) { _r = 1; } //_r must be at least one pixel
                 if(_R < 1) { _R = 1; } //_R must also be at least one pixel (not an issue as long as t isn't super small)
@@ -61,7 +61,7 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 path.AddLine(_t + _r, _t, _b1, _t);
                 path.AddLine(_b1, _t, _b1, 0);
                 path.AddLine(_b1, 0, _R, 0);
-                path.AddArc(new System.Drawing.Rectangle(0, 0, 2 * _R, 2 * _R), 270, -90);
+                path.AddArc(new System.Drawing.Rectangle(1, 1, 2 * _R, 2 * _R), 270, -90);
                 path.CloseFigure();
 
                 PointF pnt = CreateImagePoint(SF);
@@ -87,16 +87,16 @@ namespace ExcelExpress.ComplexShape.SectionProperties
 
             protected override SecProp ShapeSecProp()
             {
-                CircularArc bend = new CircularArc { Material = Material, r = r, phi = 90 * Math.PI/180, point = "j", xp = 0, yp = 0, theta = -(45 + 90) * Math.PI / 180 };
+                CircularArc bend = new CircularArc { Material = Material, r = r, t = t, phi = 90 * Math.PI/180, point = "j", xp = 0, yp = 0, theta = -(45 + 90) * Math.PI / 180 };
                 Rectangle rec1 = new Rectangle { Material = Material, b = b1 - r - t, t = t, point = "a", xp = t + r, yp = 0, theta = 0 };
                 Rectangle rec2 = new Rectangle { Material = Material, b = b2 - r - t, t = t, point = "c", xp = 0, yp = r + t, theta = 90 * Math.PI / 180 };
 
-                Section MA = new Section();
-                MA.AddShape(bend);
-                MA.AddShape(rec1);
-                MA.AddShape(rec2);
+                Section FA = new Section();
+                FA.AddShape(bend);
+                FA.AddShape(rec1);
+                FA.AddShape(rec2);
 
-                return MA.CalculateSecProp();
+                return FA.CalculateSecProp();
 
             }
 
