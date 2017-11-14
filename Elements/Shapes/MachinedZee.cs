@@ -103,7 +103,7 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 CircularFillet flt1 = new CircularFillet { Material = Material, r = r1, point = "a", xp = tw, yp = t1, theta = 0 };
                 CircularFillet flt2 = new CircularFillet { Material = Material, r = r2, point = "a", xp = 0, yp = h - t2, theta = 0, mirrorX = true, mirrorY = true };
                 Rectangle rec1 = new Rectangle { Material = Material, b = b1 - tw, t = t1, point = "a", xp = tw, yp = 0, theta = 0 };
-                Rectangle rec2 = new Rectangle { Material = Material, b = b2 - tw, t = t2, point = "e", xp = tw, yp = h, theta = 0 };
+                Rectangle rec2 = new Rectangle { Material = Material, b = b2 - tw, t = t2, point = "e", xp = 0, yp = h, theta = 0 };
                 Rectangle web = new Rectangle { Material = Material, b = h, t = tw, point = "c", xp = 0, yp = 0, theta = 90 * Math.PI / 180 };
 
                 Section MA = new Section();

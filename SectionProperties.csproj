@@ -46,6 +46,8 @@
     <Compile Include="Elements\Shapes\CircularFillet.cs" />
     <Compile Include="Elements\ImageUtil.cs" />
     <Compile Include="Elements\IShape.cs" />
+    <Compile Include="Elements\Shapes\FormedZee.cs" />
+    <Compile Include="Elements\Shapes\FormedChannel.cs" />
     <Compile Include="Elements\Shapes\FormedAngle.cs" />
     <Compile Include="Elements\Shapes\MachinedAngle.cs" />
     <Compile Include="Elements\Shapes\MachinedZee.cs" />

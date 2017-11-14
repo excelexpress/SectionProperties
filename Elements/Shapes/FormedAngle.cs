@@ -61,7 +61,7 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 path.AddLine(_t + _r, _t, _b1, _t);
                 path.AddLine(_b1, _t, _b1, 0);
                 path.AddLine(_b1, 0, _R, 0);
-                path.AddArc(new System.Drawing.Rectangle(1, 1, 2 * _R, 2 * _R), 270, -90);
+                path.AddArc(new System.Drawing.Rectangle(0, 0, 2 * _R, 2 * _R), 270, -90);
                 path.CloseFigure();
 
                 PointF pnt = CreateImagePoint(SF);
