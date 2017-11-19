@@ -28,3 +28,4 @@ C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\Sec
 C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\SectionProperties.csprojResolveAssemblyReference.cache
 C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.dll
 C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\ExcelExpress.ComplexShape.SectionProperties.pdb
+C:\Users\bande\Dropbox\StressEx\In Work\Section Properties\SectionProperties\SectionProperties\obj\Release\SectionProperties.csproj.CoreCompileInputs.cache
