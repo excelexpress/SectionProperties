@@ -83,8 +83,8 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 int int_t = (int)(t * SF);
                 int deg_alpha = (int)(alpha * 180 / Math.PI);
 
-                int cos = (int)(Math.Cos(alpha));
-                int sin = (int)(Math.Sin(alpha));
+                double cos = (Math.Cos(alpha));
+                double sin = (Math.Sin(alpha));
 
 
                 int wdth = bitmap.Width;
@@ -93,9 +93,9 @@ namespace ExcelExpress.ComplexShape.SectionProperties
                 Graphics g = Graphics.FromImage(bitmap);
 
                 GraphicsPath path = new GraphicsPath();
-                path.AddLine(int_r * cos, int_r * sin, int_R * cos, int_R * sin);
+                path.AddLine((int)(int_r * cos), (int)(int_r * sin), (int)(int_R * cos), (int)(int_R * sin));
                 path.AddArc(new System.Drawing.Rectangle(-int_R, -int_R, 2 * int_R, 2 * int_R), deg_alpha, -2 * deg_alpha);
-                path.AddLine(int_R * cos, -int_R * sin, int_r * cos, -int_r * sin);
+                path.AddLine((int)(int_R * cos), (int)(-int_R * sin), (int)(int_r * cos), (int)(-int_r * sin));
                 path.AddArc(new System.Drawing.Rectangle(-int_r, -int_r, 2 * int_r, 2 * int_r), -deg_alpha, 2 * deg_alpha);
                 path.CloseFigure();
 
