@@ -42,10 +42,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Elements\DimensionAttribute.cs" />
+    <Compile Include="Elements\Shapes\CircularSegment.cs" />
     <Compile Include="Elements\Shapes\CircularArc.cs" />
     <Compile Include="Elements\Shapes\CircularFillet.cs" />
     <Compile Include="Elements\ImageUtil.cs" />
     <Compile Include="Elements\IShape.cs" />
+    <Compile Include="Elements\Shapes\AngleFillet.cs" />
     <Compile Include="Elements\Shapes\FormedZee.cs" />
     <Compile Include="Elements\Shapes\FormedChannel.cs" />
     <Compile Include="Elements\Shapes\FormedAngle.cs" />
@@ -54,6 +56,8 @@
     <Compile Include="Elements\Shapes\MachinedChannel.cs" />
     <Compile Include="Elements\Shapes\Rectangle.cs" />
     <Compile Include="Elements\Shape.cs" />
+    <Compile Include="Elements\Shapes\IsoscelesTriangle.cs" />
+    <Compile Include="Elements\Shapes\RightTriangle.cs" />
     <Compile Include="Elements\Transformation.cs" />
     <Compile Include="Elements\Util.cs" />
     <Compile Include="Material.cs" />
