@@ -10,7 +10,7 @@ Sections are constructed using shapes and even other sections.
   <img src="https://i.imgur.com/cN11613.png" width="500" align="middle">
 </p>
 
-<p style="font-size:160%;"><b>Materials</b></p>
+<h2>Materials</h2>
 
 Users define materials, and then assign them to a shape prior to building up a section. The following properties can be defined:
 
@@ -29,9 +29,9 @@ Example:
   IsoMaterial mat = new IsoMaterial { Name = "mat1", E = 1, G = 1, v = 0.33, MaterialColor_Hex = "#00FF00" };
 </code>
 
-<br>
+<p><br></p>
 
-<p style="font-size:160%;"><b>Shapes</b></p>
+<h2>Shapes</h2>
 
 Positioning: 
 Position shapes by defining a point (specific to each shape type, shown below) and it's location coordinates, xp and yp. 
@@ -66,7 +66,7 @@ Example:
             MA.mirrorY = true;
 </code></pre>
 
-<p style="font-size:160%;"><b>Sections</b></p>
+<h2>Sections</h2>
 
 Add shapes to section:
 
@@ -96,7 +96,7 @@ Draw Section to file:
 </code></pre>
 
 
-<p style="font-size:160%;"><b>Full Sample</b></p>
+<h2>Full Sample</h2>
 
 <pre><code>
             IsoMaterial mat = new IsoMaterial { Name = "mat1", E = 1, G = 1, v = 0.33, MaterialColor_Hex = "#00FF00" };
