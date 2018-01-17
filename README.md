@@ -138,3 +138,9 @@ Draw Section to file:
 
             bitmap.Save("Shape2.bmp");
 </code></pre>
+
+<p align="center">
+  <img src="https://i.imgur.com/pLVo4Ec.png" width="250" align="middle">
+  <br>
+  <b>sec.Draw(...) output<b>
+</p>
